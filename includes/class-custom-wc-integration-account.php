@@ -59,6 +59,8 @@ class Custom_Wc_Integration_Account {
                 wc_add_notice( 'Preferences saved successfully!', 'success' );
             }
 
+            wp_safe_redirect( wc_get_endpoint_url( 'custom-wc-integration', '', wc_get_page_permalink( 'myaccount' ) ) );
+			exit;
         }
     }
 }
