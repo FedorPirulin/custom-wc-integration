@@ -7,7 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Custom_Wc_Integration_Widget extends WP_Widget {
 	public function __construct() {
         parent::__construct( 'custom_wc_integration_widget', __( 'Custom Wc Integration Widget', 'custom-wc-integration' ), array('description' => 'Displays data based on user preferences.' ) );
-
     }
 
 	/**

@@ -30,7 +30,7 @@ class Custom_Wc_Integration_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		flush_rewrite_rules();
 	}
 
 }
