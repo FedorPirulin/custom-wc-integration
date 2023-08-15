@@ -77,7 +77,8 @@ class Custom_Wc_Integration {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_wc_account_hooks();
-		
+		$this->define_wc_widget_hooks();
+
 	}
 
 	/**
@@ -158,12 +159,27 @@ class Custom_Wc_Integration {
 	 */
 	private function define_wc_account_hooks() {
 
-		$plugin_wc_account = new Custom_WC_Integration_Account( $this->get_plugin_name() );
+		$plugin_wc_account = new Custom_Wc_Integration_Account( $this->get_plugin_name() );
 
 		$this->loader->add_action( 'init', $plugin_wc_account, 'add_endpoint' );
 		$this->loader->add_action( 'template_redirect', $plugin_wc_account, 'save_user_preferences' );
 		$this->loader->add_action( 'woocommerce_account_' . $this->get_plugin_name() . '_endpoint', $plugin_wc_account, 'render_settings_ui' );
 		$this->loader->add_filter( 'woocommerce_account_menu_items', $plugin_wc_account, 'add_menu_item' );
+
+	}
+
+	/**
+	 * Register all of the hooks related to the Widget area functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_wc_widget_hooks() {
+
+		$plugin_wc_widget = new Custom_Wc_Integration_Widget( $this->get_plugin_name() );
+
+		$this->loader->add_action( 'widgets_init', $plugin_wc_widget, 'register_widget' );
 
 	}
 
